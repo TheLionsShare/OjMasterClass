@@ -23,6 +23,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 public class DodgeMain extends Activity implements Field.Delegate {
@@ -86,10 +87,10 @@ public class DodgeMain extends Activity implements Field.Delegate {
         bestLevelView = findViewById(R.id.bestLevelView);
         bestFreePlayLevelView = findViewById(R.id.bestFreePlayLevelView);
         
-        Button newGameButton = (Button)findViewById(R.id.newGameButton);
+        ImageButton newGameButton = (ImageButton)findViewById(R.id.playButton);
         newGameButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                doNewGame();
+                doFreePlay(1);
             }
         });
         
@@ -100,14 +101,14 @@ public class DodgeMain extends Activity implements Field.Delegate {
             }
         });*/
         
-       /* continueFreePlayButton.setOnClickListener(new View.OnClickListener() {
+       continueFreePlayButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 doFreePlay(bestLevel(true));
             }
-        });*/
+        });
 
         
-        Button aboutButton = (Button)findViewById(R.id.aboutButton);
+        ImageButton aboutButton = (ImageButton)findViewById(R.id.helpButton);
         aboutButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 doAbout();

@@ -61,7 +61,7 @@ public class FieldView extends SurfaceView implements SurfaceHolder.Callback {
 	Paint dodgerPaint;
 	RectF bounds;
 
-	Bitmap backgroundBitmap;
+	Bitmap backgroundBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.jungle5);
 	Bitmap unscaledBackgroundBitmap;
 	boolean flashingBullets = false;
 	boolean tiltControlEnabled = true;
@@ -91,19 +91,25 @@ public class FieldView extends SurfaceView implements SurfaceHolder.Callback {
 	static float DODGER_SCALE = 10f / 480;
 	static float BULLET_SCALE = 5f / 480;
 
-	Bitmap orange = BitmapFactory.decodeResource(getResources(), R.drawable.orange);
-	Bitmap apple = BitmapFactory.decodeResource(getResources(), R.drawable.apple);
-	Bitmap banana = BitmapFactory.decodeResource(getResources(), R.drawable.banana);
-	Bitmap cherry = BitmapFactory.decodeResource(getResources(), R.drawable.cherry);
-	Bitmap grape = BitmapFactory.decodeResource(getResources(), R.drawable.grape);
+	Bitmap orange = BitmapFactory.decodeResource(getResources(),
+			R.drawable.orange);
+	Bitmap apple = BitmapFactory.decodeResource(getResources(),
+			R.drawable.apple);
+	Bitmap banana = BitmapFactory.decodeResource(getResources(),
+			R.drawable.banana);
+	Bitmap cherry = BitmapFactory.decodeResource(getResources(),
+			R.drawable.cherry);
+	Bitmap grape = BitmapFactory.decodeResource(getResources(),
+			R.drawable.grape);
 	Bitmap pineapple = BitmapFactory.decodeResource(getResources(),
 			R.drawable.pineapple);
 	Bitmap watermelon = BitmapFactory.decodeResource(getResources(),
 			R.drawable.watermelon);
+	Bitmap monkey = BitmapFactory.decodeResource(getResources(),
+			R.drawable.monkey);
+	Bitmap bomb = BitmapFactory.decodeResource(getResources(), R.drawable.tnt);
 	
-	Random rng = new Random();
-	
-	
+
 	public FieldView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 
@@ -317,21 +323,16 @@ public class FieldView extends SurfaceView implements SurfaceHolder.Callback {
 
 		int x = (int) (position.x * this.getWidth());
 		int y = (int) (position.y * this.getWidth());
-		//canvas.drawBitmap(orange, 90, 40, paint);
 
-		Rect dest = new Rect(x, y, x + 60, y + 60);
-		
+		Rect dest = new Rect(x, y, x + 50, y + 50);
 
 		paint.setFilterBitmap(true);
-		
-		canvas.drawBitmap(orange, null, dest, paint);
-			
-		
-		}
 
-		// canvas.drawCircle(x, y, 15, paint);
-		// orangeDraw.draw(canvas);
-	
+		canvas.drawBitmap(bomb, null, dest, paint);
+
+	}
+
+	// canvas.drawCircle(x, y, 15, paint);
 
 	Paint tempPaint = new Paint();
 	{
@@ -339,8 +340,6 @@ public class FieldView extends SurfaceView implements SurfaceHolder.Callback {
 	}
 	Random random = new Random();
 
-
-	
 	/**
 	 * Draws background image, goal zones, player, and bullets.
 	 */
@@ -362,7 +361,7 @@ public class FieldView extends SurfaceView implements SurfaceHolder.Callback {
 		Canvas c = surfaceHolder.lockCanvas(null);
 
 		if (unscaledBackgroundBitmap != null) {
-			// ok to call this from a secondary thread?
+
 			this.setBackgroundBitmap(unscaledBackgroundBitmap);
 		}
 
@@ -387,8 +386,7 @@ public class FieldView extends SurfaceView implements SurfaceHolder.Callback {
 			} else {
 				tempPaint.setARGB(255, color[0], color[1], color[2]);
 			}
-			int fruit = rng.nextInt(8);
-			Bitmap[] FRUIT = {orange, apple, cherry, grape, watermelon, banana, pineapple};
+
 			drawCircleAtPosition(c, bullet.getPosition(),
 					BULLET_SCALE * this.getWidth(), tempPaint);
 		}
@@ -413,10 +411,15 @@ public class FieldView extends SurfaceView implements SurfaceHolder.Callback {
 				dodgerDeathPosition = null;
 			}
 		} else if (field.getDodger() != null) {
-			int fruit = rng.nextInt(8);
-			Bitmap[] FRUIT = {orange, apple, cherry, grape, watermelon, banana, pineapple};
-			drawCircleAtPosition(c, field.getDodger().getPosition(),
-					DODGER_SCALE * this.getWidth(), dodgerPaint);
+
+			//DRAW PLAYER
+			int x = (int) (field.getDodger().getPosition().x * this.getWidth());
+			int y = (int) (field.getDodger().getPosition().y * this.getWidth());
+
+			Rect dest = new Rect(x, y, x + 50, y + 50);
+			c.drawBitmap(monkey, null, dest, dodgerPaint);
+			//drawCircleAtPosition(c, field.getDodger().getPosition(),
+				//	DODGER_SCALE * this.getWidth(), dodgerPaint);
 		}
 
 		if (debugText != null) {

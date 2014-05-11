@@ -50,6 +50,20 @@
     android:gravity="center"
     android:orientation="vertical" >
 
+    <ImageButton
+        android:id="@+id/playButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#0000"
+        android:src="@drawable/play" />
+
+    <ImageButton
+        android:id="@+id/helpButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#0000"
+        android:src="@drawable/question" />
+
   <LinearLayout
       android:orientation="vertical"
       android:gravity="center"
@@ -71,18 +85,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="5px">
-    
-        <Button
-            android:id="@+id/newGameButton"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:text="New Game" />
-    
-        <Button
-            android:id="@+id/aboutButton"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:text="Help/About" />
     
     </LinearLayout>
     
