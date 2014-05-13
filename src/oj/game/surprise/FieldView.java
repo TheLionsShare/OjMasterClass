@@ -61,8 +61,9 @@ public class FieldView extends SurfaceView implements SurfaceHolder.Callback {
 	Paint dodgerPaint;
 	RectF bounds;
 
-	Bitmap backgroundBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.jungle5);
-	//Bitmap unscaledBackgroundBitmap;
+	Bitmap backgroundBitmap = BitmapFactory.decodeResource(getResources(),
+			R.drawable.jungle5);
+	// Bitmap unscaledBackgroundBitmap;
 	boolean flashingBullets = false;
 	boolean tiltControlEnabled = true;
 	boolean showFPS = false;
@@ -91,24 +92,12 @@ public class FieldView extends SurfaceView implements SurfaceHolder.Callback {
 	static float DODGER_SCALE = 10f / 480;
 	static float BULLET_SCALE = 5f / 480;
 
-	Bitmap orange = BitmapFactory.decodeResource(getResources(),
-			R.drawable.orange);
-	Bitmap apple = BitmapFactory.decodeResource(getResources(),
-			R.drawable.apple);
-	Bitmap banana = BitmapFactory.decodeResource(getResources(),
-			R.drawable.banana);
-	Bitmap cherry = BitmapFactory.decodeResource(getResources(),
-			R.drawable.cherry);
-	Bitmap grape = BitmapFactory.decodeResource(getResources(),
-			R.drawable.grape);
-	Bitmap pineapple = BitmapFactory.decodeResource(getResources(),
-			R.drawable.pineapple);
-	Bitmap watermelon = BitmapFactory.decodeResource(getResources(),
-			R.drawable.watermelon);
+	Bitmap oranges = BitmapFactory.decodeResource(getResources(),
+			R.drawable.oneorange);
+
 	Bitmap monkey = BitmapFactory.decodeResource(getResources(),
 			R.drawable.monkey);
 	Bitmap wasp = BitmapFactory.decodeResource(getResources(), R.drawable.wasp);
-	
 
 	public FieldView(Context context, AttributeSet attrs) {
 		super(context, attrs);
@@ -158,15 +147,15 @@ public class FieldView extends SurfaceView implements SurfaceHolder.Callback {
 				// view isn't set up yet, this can happen on startup.
 				// store the original bitmap and call this method again from the
 				// surfaceCreated callback
-				//unscaledBackgroundBitmap = value;
+				// unscaledBackgroundBitmap = value;
 				return;
 			}
 
-			//unscaledBackgroundBitmap = null;
+			// unscaledBackgroundBitmap = null;
 			int bw = value.getWidth();
 			int bh = value.getHeight();
 			if (vw <= 0 || vh <= 0 || bw <= 0 || bh <= 0) {
-				//backgroundBitmap = null; // shouldn't happen
+				// backgroundBitmap = null; // shouldn't happen
 				return;
 			}
 			double imageRatio = 1.0 * bw / bh;
@@ -188,8 +177,6 @@ public class FieldView extends SurfaceView implements SurfaceHolder.Callback {
 			Bitmap newBitmap = Bitmap.createBitmap(vw, vh,
 					Bitmap.Config.ARGB_8888);
 			Canvas canvas = new Canvas(backgroundBitmap);
-	//canvas.drawBitmap(value, srcRect, dstRect, blackPaint);
-		//	canvas.drawBitmap(backgroundBitmap, srcRect, dstRect, blackPaint);
 			backgroundBitmap = newBitmap;
 		}
 	}
@@ -228,9 +215,8 @@ public class FieldView extends SurfaceView implements SurfaceHolder.Callback {
 		};
 		gameThread.start();
 
-		if (tiltControlEnabled) {
-			startOrientationListener();
-		}
+		startOrientationListener();
+
 	}
 
 	/**
@@ -333,8 +319,6 @@ public class FieldView extends SurfaceView implements SurfaceHolder.Callback {
 
 	}
 
-	// canvas.drawCircle(x, y, 15, paint);
-
 	Paint tempPaint = new Paint();
 	{
 		tempPaint.setAntiAlias(true);
@@ -361,11 +345,6 @@ public class FieldView extends SurfaceView implements SurfaceHolder.Callback {
 
 		Canvas c = surfaceHolder.lockCanvas(null);
 
-//		if (unscaledBackgroundBitmap != null) {
-//
-//			this.setBackgroundBitmap(unscaledBackgroundBitmap);
-//		}
-		
 		if (backgroundBitmap != null) {
 			c.drawBitmap(backgroundBitmap, 0, 0, blackPaint);
 		} else {
@@ -373,11 +352,19 @@ public class FieldView extends SurfaceView implements SurfaceHolder.Callback {
 		}
 
 		float goalHeight = (float) (field.goalHeight() * this.getWidth());
-		c.drawRect(new RectF(0, 0, this.getWidth(), goalHeight),
-				field.getMovingUp() ? startAreaPaint : endAreaPaint);
-		c.drawRect(new RectF(0, this.getHeight() - goalHeight, this.getWidth(),
-				this.getHeight()), field.getMovingUp() ? endAreaPaint
-				: startAreaPaint);
+		//c.drawRect(new RectF(0, 0, this.getWidth(), goalHeight),
+			//	field.getMovingUp() ? startAreaPaint : endAreaPaint);
+		
+		float width = this.getWidth();
+		float bottom = this.getHeight() - goalHeight;
+		
+		for(int i = 1; i < 15; i ++)
+		{
+		c.drawBitmap(oranges, null,  new RectF(i * 100 - 20, field.getMovingUp() ? bottom : 0, i * 100 + 20, field.getMovingUp() ? this.getHeight() : goalHeight), field.getMovingUp() ? startAreaPaint : endAreaPaint);
+		}
+		//c.drawRect(new RectF(0, this.getHeight() - goalHeight, this.getWidth(),
+			//	this.getHeight()), field.getMovingUp() ? endAreaPaint
+				//: startAreaPaint);
 
 		for (Bullet bullet : field.getBullets()) {
 			int[] color = bullet.getColor();
@@ -413,14 +400,13 @@ public class FieldView extends SurfaceView implements SurfaceHolder.Callback {
 			}
 		} else if (field.getDodger() != null) {
 
-			//DRAW PLAYER
+			// DRAW PLAYER
 			int x = (int) (field.getDodger().getPosition().x * this.getWidth());
 			int y = (int) (field.getDodger().getPosition().y * this.getWidth());
 
 			Rect dest = new Rect(x, y, x + 75, y + 75);
 			c.drawBitmap(monkey, null, dest, dodgerPaint);
-			//drawCircleAtPosition(c, field.getDodger().getPosition(),
-				//	DODGER_SCALE * this.getWidth(), dodgerPaint);
+			
 		}
 
 		if (debugText != null) {

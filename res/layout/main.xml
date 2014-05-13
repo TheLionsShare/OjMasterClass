@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" >
@@ -45,24 +45,48 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:gravity="center"
-        android:background = "#0000"
         android:orientation="vertical" >
+
+        <ImageView
+            android:id="@+id/OjSurprise"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="15dp"
+            android:src="@drawable/proteinstain" />
+
+        <ImageButton
+            android:id="@+id/marathonButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#0000"
+            android:paddingBottom="15dp"
+            android:src="@drawable/marathonmode" />
+
+        <ImageButton
+            android:id="@+id/normalButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#0000"
+            android:paddingBottom="15dp"
+            android:src="@drawable/normalmode" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#8448"
+            android:background="#0000"
             android:gravity="center"
             android:orientation="vertical"
             android:padding="5px" >
 
-            <TextView
-                android:id="@+id/statusText"
+            <ImageButton
+                android:id="@+id/continueFreePlayButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="5px"
-                android:text="" />
-
+                android:background="#0000"
+                android:gravity="center"
+                android:paddingBottom="15dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/confreeplay" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -70,52 +94,40 @@
                 android:gravity="center"
                 android:orientation="horizontal"
                 android:padding="5px" >
-
-                <Button
-                    android:id="@+id/marathonButton"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:text="Marathon Mode" />
-
-                <Button
-                    android:id="@+id/helpButton"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:text="Help/About" />
             </LinearLayout>
 
+            <ImageButton
+                android:id="@+id/helpButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#0000"
+                android:src="@drawable/help" />
 
             <TableLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" >
 
-
                 <TableRow android:id="@+id/bestLevelView" >
 
                     <TextView
+                        android:layout_gravity="left"
                         android:gravity="right"
-                        android:text="@string/best_level" />
+                        android:text="@string/best_level"
+                        android:textColor="#FFFFFF" />
 
                     <TextView android:id="@+id/bestLevelText" />
                 </TableRow>
-
 
                 <TableRow android:id="@+id/bestFreePlayLevelView" >
 
                     <TextView
                         android:gravity="right"
-                        android:text="@string/best_free_play_level" />
+                        android:text="Longest Marathon: "
+                        android:textColor="#FFFFFF" />
 
                     <TextView android:id="@+id/bestFreePlayLevelText" />
                 </TableRow>
             </TableLayout>
-
-            <Button
-                android:id="@+id/continueFreePlayButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Continue Free Play" />
         </LinearLayout>
     </LinearLayout>
 

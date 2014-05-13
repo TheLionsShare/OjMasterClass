@@ -36,12 +36,12 @@ public class Game extends Activity implements Field.Delegate {
 	TextView levelText;
 	TextView livesText;
 	int deaths;
-	// TextView statusText;
-	// TextView bestLevelText;
+	TextView statusText;
+	TextView bestLevelText;
 	TextView bestFreePlayLevelText;
-	Button continueFreePlayButton;
+	ImageButton continueFreePlayButton;
 	View bestFreePlayLevelView;
-	// View bestLevelView;
+	View bestLevelView;
 	MenuItem endGameMenuItem;
 	MenuItem selectBackgroundImageMenuItem;
 	MenuItem preferencesMenuItem;
@@ -81,20 +81,20 @@ public class Game extends Activity implements Field.Delegate {
 		 * setBestLevel(true, 0); setBestLevel(false, 0);
 		 */
 
-		// bestLevelText = (TextView)findViewById(R.id.bestLevelText);
+		bestLevelText = (TextView)findViewById(R.id.bestLevelText);
 		bestFreePlayLevelText = (TextView) findViewById(R.id.bestFreePlayLevelText);
-		continueFreePlayButton = (Button) findViewById(R.id.continueFreePlayButton);
-		// bestLevelView = findViewById(R.id.bestLevelView);
+		continueFreePlayButton = (ImageButton) findViewById(R.id.continueFreePlayButton);
+		bestLevelView = findViewById(R.id.bestLevelView);
 		bestFreePlayLevelView = findViewById(R.id.bestFreePlayLevelView);
 
-		/*
-		 * ImageButton newGameButton =
-		 * (ImageButton)findViewById(R.id.playButton);
-		 * newGameButton.setOnClickListener(new View.OnClickListener() { public
-		 * void onClick(View v) { doFreePlay(1); } });
-		 */
+		
+		  ImageButton newGameButton =
+		  (ImageButton)findViewById(R.id.normalButton);
+		  newGameButton.setOnClickListener(new View.OnClickListener() { public
+		  void onClick(View v) { doNewGame(); } });
+		 
 
-		Button marathonButton = (Button) findViewById(R.id.marathonButton);
+		ImageButton marathonButton = (ImageButton) findViewById(R.id.marathonButton);
 		marathonButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				doFreePlay(1);
@@ -107,7 +107,7 @@ public class Game extends Activity implements Field.Delegate {
 			}
 		});
 
-		Button aboutButton = (Button) findViewById(R.id.helpButton);
+		ImageButton aboutButton = (ImageButton) findViewById(R.id.helpButton);
 		aboutButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				doAbout();
@@ -193,8 +193,8 @@ public class Game extends Activity implements Field.Delegate {
 
 	void updateBestLevelFields() {
 		int bestNormal = bestLevel(false);
-		// bestLevelText.setText((bestNormal>1) ? String.valueOf(bestNormal) :
-		// getString(R.string.score_none));
+		 bestLevelText.setText((bestNormal>1) ? String.valueOf(bestNormal) :
+		 getString(R.string.score_none));
 
 		int bestFree = bestLevel(true);
 		bestFreePlayLevelText.setText((bestFree > 1) ? String.valueOf(bestFree)
@@ -252,7 +252,7 @@ public class Game extends Activity implements Field.Delegate {
 
 	void doGameOver() {
 		field.removeDodger();
-		// statusText.setText(getString(R.string.game_over_message));
+		//statusText.setText(getString(R.string.game_over_message));
 		updateBestLevelFields();
 		menuView.setVisibility(View.VISIBLE);
 	}
