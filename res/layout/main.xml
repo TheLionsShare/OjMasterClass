@@ -1,122 +1,122 @@
-<?xml version="1.0" encoding="utf-8"?>
-
+<?xml version="1.0" encoding="UTF-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
-
-
-<LinearLayout
-    android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
-    
-    <com.dozingcatsoftware.dodge.FieldView
-      android:id="@+id/fieldView"
-      android:layout_width="fill_parent"
-      android:layout_height="fill_parent"
-      android:layout_weight="1"/>
-      
-      <LinearLayout 
-      	android:orientation="horizontal"
-      	android:layout_width="fill_parent"
-      	android:layout_height="wrap_content"
-      	android:layout_weight="1">
-      	
-        <TextView
-            android:text="@string/level_initial"
-            android:id="@+id/levelText"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:includeFontPadding="true"
-            android:lines="2"
-            android:layout_weight="1"/>
-        
-        <TextView
-            android:text="@string/lives_initial"
-            android:id="@+id/livesText"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:includeFontPadding="true"
-            android:lines="2"
-            android:layout_weight="1"/>
-      </LinearLayout>
-</LinearLayout>
-
-<LinearLayout
-    android:id="@+id/menuView"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@drawable/jungle5"
-    android:gravity="center"
-    android:orientation="vertical" >
-
-    <ImageButton
-        android:id="@+id/playButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#0000"
-        android:src="@drawable/play" />
-
-    <ImageButton
-        android:id="@+id/helpButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#0000"
-        android:src="@drawable/question" />
-
-  <LinearLayout
-      android:orientation="vertical"
-      android:gravity="center"
-      android:background="#8448"
-      android:padding="5px"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content">
-      
-    <TextView
-        android:id="@+id/statusText"
-        android:text="Welcome to Dodge!"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="5px" />
+    android:layout_height="fill_parent" >
 
     <LinearLayout
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="5px">
-    
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
+
+        <oj.game.surprise.FieldView
+            android:id="@+id/fieldView"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/levelText"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:includeFontPadding="true"
+                android:lines="2"
+                android:text="@string/level_initial" />
+
+            <TextView
+                android:id="@+id/livesText"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:includeFontPadding="true"
+                android:lines="2"
+                android:text="@string/lives_initial" />
+        </LinearLayout>
     </LinearLayout>
-    
-    <TableLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-        
-        <TableRow android:id="@+id/bestLevelView">
-        	<TextView
-        	    android:text="@string/best_level" 
-        	    android:gravity="right" />        	
-        	<TextView 
-        	    android:id="@+id/bestLevelText" />        	
-        </TableRow>
-        <TableRow android:id="@+id/bestFreePlayLevelView">
-        	<TextView
-        	    android:text="@string/best_free_play_level"
-        	    android:gravity="right" />    	
-        	<TextView 
-        	    android:id="@+id/bestFreePlayLevelText" />        	
-        </TableRow>
-    </TableLayout>
-    
-    <Button
-        android:id="@+id/continueFreePlayButton"
-        android:text="Continue Free Play"
-        android:gravity="center" 
-        android:layout_width="wrap_content" 
-        android:layout_height="wrap_content" />
-    
-  </LinearLayout>
-    
-</LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/menuView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center"
+        android:background = "#0000"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#8448"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="5px" >
+
+            <TextView
+                android:id="@+id/statusText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5px"
+                android:text="" />
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="5px" >
+
+                <Button
+                    android:id="@+id/marathonButton"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:text="Marathon Mode" />
+
+                <Button
+                    android:id="@+id/helpButton"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:text="Help/About" />
+            </LinearLayout>
+
+
+            <TableLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+
+                <TableRow android:id="@+id/bestLevelView" >
+
+                    <TextView
+                        android:gravity="right"
+                        android:text="@string/best_level" />
+
+                    <TextView android:id="@+id/bestLevelText" />
+                </TableRow>
+
+
+                <TableRow android:id="@+id/bestFreePlayLevelView" >
+
+                    <TextView
+                        android:gravity="right"
+                        android:text="@string/best_free_play_level" />
+
+                    <TextView android:id="@+id/bestFreePlayLevelText" />
+                </TableRow>
+            </TableLayout>
+
+            <Button
+                android:id="@+id/continueFreePlayButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Continue Free Play" />
+        </LinearLayout>
+    </LinearLayout>
 
 </FrameLayout>
