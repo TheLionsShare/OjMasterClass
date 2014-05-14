@@ -50,7 +50,7 @@ public class Game extends Activity implements Field.Delegate {
 
 	Handler messageHandler;
 
-	int lives = 9;
+	int lives = 10;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -98,6 +98,7 @@ public class Game extends Activity implements Field.Delegate {
 		marathonButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				doFreePlay(1);
+
 			}
 		});
 

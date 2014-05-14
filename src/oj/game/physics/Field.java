@@ -27,8 +27,8 @@ public class Field {
 	
 	Random random = new Random();
 	
-	Bullet[] bullets;
-	Dodger dodger;
+	Wasp[] bullets;
+	Player dodger;
 	boolean running = false;
 	boolean movingUp = true;
 	
@@ -40,9 +40,9 @@ public class Field {
 	 * and the speed and direction is randomly assigned. The bullet will always travel from one edge of the
 	 * screen to the opposite edge.
 	 */
-	Bullet newBullet() {
+	Wasp newBullet() {
 		// LevelManager call returns a Class but we have to instantiate it here, sort of ugly
-		Bullet bullet = null;
+		Wasp bullet = null;
 		Class bulletClass = levelManager.selectBulletClassForCurrentLevel();
 		if (bulletClass==SineWaveBullet.class) {
 			bullet = SineWaveBullet.create(0.2 + 0.1*random.nextDouble(), 0.1, 1.5);
@@ -55,7 +55,7 @@ public class Field {
 		}
 		else {
 			// TODO: make speed configurable
-			bullet = Bullet.create(0.2 + 0.2*random.nextDouble());
+			bullet = Wasp.create(0.2 + 0.2*random.nextDouble());
 		}
 		
 		// set random position and direction, always going across the screen
@@ -95,7 +95,7 @@ public class Field {
 		
 		if (this.bullets==null || this.bullets.length!=maxBullets) {
 			// allocate new array and copy existing bullets (this will truncate some bullets if current length>maxBullets)
-			Bullet[] newBullets = new Bullet[maxBullets];
+			Wasp[] newBullets = new Wasp[maxBullets];
 			if (this.bullets!=null) {
 				System.arraycopy(this.bullets, 0, newBullets, 0, Math.min(bullets.length, maxBullets));
 			}
@@ -103,7 +103,7 @@ public class Field {
 		}
 		
 		for(int i=0; i<maxBullets; i++) {
-			Bullet b = this.bullets[i];
+			Wasp b = this.bullets[i];
 			if (b!=null) {
 				b.tick(dt);
 				if (b.shouldRemoveFromField(this)) {
@@ -125,7 +125,7 @@ public class Field {
 			if (dpos.y > this.goalHeight() && dpos.y < aspectRatio-this.goalHeight()) {
 				boolean hit = false;
 				for(int i=0; i<maxBullets; i++) {
-					Bullet b = this.bullets[i];
+					Wasp b = this.bullets[i];
 					if (b!=null) {
 						if (dpos.squaredDistanceTo(b.getPosition()) < 0.025*0.025) {
 							hit = true;
@@ -156,7 +156,7 @@ public class Field {
 	/** Creates the player sprite and positions it in the center of the start area.
 	 */
 	public void createDodger() {
-		dodger = new Dodger();
+		dodger = new Player();
 		double yoffset = goalHeight()/2;
 		dodger.setPosition(new Vec2(0.5, (movingUp) ? yoffset : aspectRatio-yoffset));
 		dodger.setSpeed(0.4);
@@ -170,7 +170,7 @@ public class Field {
 	}
 	
 	public void start() {
-		bullets = new Bullet[0];
+		bullets = new Wasp[0];
 		running = true;
 	}
 	
@@ -197,13 +197,13 @@ public class Field {
 	public void setMaxBullets(int maxBullets) {
 		this.maxBullets = maxBullets;
 	}
-	public Bullet[] getBullets() {
+	public Wasp[] getBullets() {
 		return bullets;
 	}
-	public Dodger getDodger() {
+	public Player getDodger() {
 		return dodger;
 	}
-	public void setDodger(Dodger dodger) {
+	public void setDodger(Player dodger) {
 		this.dodger = dodger;
 	}
 	public boolean getMovingUp() {

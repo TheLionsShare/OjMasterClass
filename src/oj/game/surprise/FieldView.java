@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
-import oj.game.physics.Bullet;
+import oj.game.physics.Wasp;
 import oj.game.physics.Field;
 import oj.game.physics.Vec2;
 
@@ -107,9 +107,9 @@ public class FieldView extends SurfaceView implements SurfaceHolder.Callback {
 		blackPaint = new Paint();
 		blackPaint.setARGB(255, 0, 150, 0);
 		startAreaPaint = new Paint();
-		startAreaPaint.setARGB(128, 255, 0, 0);
+		startAreaPaint.setARGB(255, 255, 0, 0);
 		endAreaPaint = new Paint();
-		endAreaPaint.setARGB(128, 0, 255, 0);
+		endAreaPaint.setARGB(255, 0, 255, 0);
 		dodgerPaint = new Paint();
 		dodgerPaint.setARGB(255, 0, 0, 255);
 		dodgerPaint.setAntiAlias(true);
@@ -352,21 +352,22 @@ public class FieldView extends SurfaceView implements SurfaceHolder.Callback {
 		}
 
 		float goalHeight = (float) (field.goalHeight() * this.getWidth());
-		//c.drawRect(new RectF(0, 0, this.getWidth(), goalHeight),
-			//	field.getMovingUp() ? startAreaPaint : endAreaPaint);
 		
-		float width = this.getWidth();
-		float bottom = this.getHeight() - goalHeight;
-		
-		for(int i = 1; i < 15; i ++)
-		{
-		c.drawBitmap(oranges, null,  new RectF(i * 100 - 20, field.getMovingUp() ? bottom : 0, i * 100 + 20, field.getMovingUp() ? this.getHeight() : goalHeight), field.getMovingUp() ? startAreaPaint : endAreaPaint);
-		}
-		//c.drawRect(new RectF(0, this.getHeight() - goalHeight, this.getWidth(),
-			//	this.getHeight()), field.getMovingUp() ? endAreaPaint
-				//: startAreaPaint);
 
-		for (Bullet bullet : field.getBullets()) {
+		float bottom = this.getHeight() - goalHeight;
+
+		for (int i = 1; i < 15; i++) {
+			c.drawBitmap(
+					oranges,
+					null,
+					new RectF(i * 85 - 30, field.getMovingUp() ? bottom : 0,
+							i * 85 + 30, field.getMovingUp() ? this
+									.getHeight() : goalHeight), field
+							.getMovingUp() ? startAreaPaint : endAreaPaint);
+		}
+		
+
+		for (Wasp bullet : field.getBullets()) {
 			int[] color = bullet.getColor();
 			if (flashingBullets) {
 				tempPaint.setARGB(255, 100 + random.nextInt(155),
@@ -406,7 +407,7 @@ public class FieldView extends SurfaceView implements SurfaceHolder.Callback {
 
 			Rect dest = new Rect(x, y, x + 75, y + 75);
 			c.drawBitmap(monkey, null, dest, dodgerPaint);
-			
+
 		}
 
 		if (debugText != null) {

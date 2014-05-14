@@ -2,7 +2,7 @@ package oj.game.physics;
 
 /** Bullet that periodically stops and then continues moving.
  */
-public class StopAndGoBullet extends Bullet {
+public class StopAndGoBullet extends Wasp {
 	
 	double goInterval;
 	double stopInterval;

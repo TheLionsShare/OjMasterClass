@@ -2,7 +2,6 @@ package oj.game.physics;
 
 /** Represents an object moving on a Field. A Sprite contains a current position, target position, speed,
  * and color. The default implementation moves in a straight line toward the target position.
- * @author brian
  *
  */
 

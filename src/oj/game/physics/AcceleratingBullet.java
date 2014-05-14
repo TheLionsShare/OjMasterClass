@@ -3,7 +3,7 @@ package oj.game.physics;
 /** Bullet that increases speed over time. Not currently used.
  */
 
-public class AcceleratingBullet extends Bullet {
+public class AcceleratingBullet extends Wasp {
 	
 	double acceleration;
 	

@@ -5,7 +5,7 @@ import java.util.Random;
 /** Bullet that moves in an orbit around its straight-line path to the target position. Not currently used.
  */
 
-public class HelixBullet extends Bullet {
+public class HelixBullet extends Wasp {
 	
 	static final double PI2 = 2*Math.PI;
 	static Random RAND = new Random();

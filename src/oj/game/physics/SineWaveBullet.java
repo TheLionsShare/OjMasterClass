@@ -5,7 +5,7 @@ import java.util.Random;
 /** Bullet that travels in a straight line, with a horizontal or vertical displacement given by the sine function.
  */
 
-public class SineWaveBullet extends Bullet {
+public class SineWaveBullet extends Wasp {
 	
 	double amplitude;
 	double period;

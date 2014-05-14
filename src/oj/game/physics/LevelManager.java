@@ -4,32 +4,31 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-/** This class contains the logic for determining the number of types of bullets for each level.
+/*
+ *  This class contains the logic for determining the number of types of bullets for each level.
  */
 
 public class LevelManager {
-	
 	int BASE_BULLETS = 8;
 	int NEW_BULLETS_PER_LEVEL = 2;
-	Class DEFAULT_BULLET_CLASS = Bullet.class;
+	Class DEFAULT_BULLET_CLASS = Wasp.class;
 	
 	// This structure defines the bullet frequencies as they change with levels
 	List<LevelConfig> LEVEL_INFO = Arrays.asList(
-		new LevelConfig(5, Arrays.asList(new LevelBulletConfig(90, Bullet.class),
+		new LevelConfig(5, Arrays.asList(new LevelBulletConfig(90, Wasp.class),
 				                         new LevelBulletConfig(10, StopAndGoBullet.class))),
 				                         
-		new LevelConfig(10, Arrays.asList(new LevelBulletConfig(90, Bullet.class),
+		new LevelConfig(10, Arrays.asList(new LevelBulletConfig(90, Wasp.class),
 						                  new LevelBulletConfig( 5, StopAndGoBullet.class),
 						                  new LevelBulletConfig( 5, SineWaveBullet.class))),
 				                         
-		new LevelConfig(15, Arrays.asList(new LevelBulletConfig(85, Bullet.class),
+		new LevelConfig(15, Arrays.asList(new LevelBulletConfig(85, Wasp.class),
 								          new LevelBulletConfig(10, StopAndGoBullet.class),
 								          new LevelBulletConfig( 5, SineWaveBullet.class))),
 								          
-		new LevelConfig(20, Arrays.asList(new LevelBulletConfig(80, Bullet.class),
+		new LevelConfig(20, Arrays.asList(new LevelBulletConfig(80, Wasp.class),
 										  new LevelBulletConfig(10, StopAndGoBullet.class),
-										  new LevelBulletConfig(10, SineWaveBullet.class)))
-								          
+										  new LevelBulletConfig(10, SineWaveBullet.class)))							      
 	);
 	
 	int currentLevel;
@@ -51,7 +50,7 @@ public class LevelManager {
 			}
 		}
 		
-		public Class<Bullet> bulletClassForValue(int value) {
+		public Class<Wasp> bulletClassForValue(int value) {
 			// keep subtracting frequencies from value until it hits 0
 			// e.g. if frequencies are (10, 20, 70) 0-9 will pick the first, 10-29 second, rest third
 			for(LevelBulletConfig bc : this.bulletConfigs) {
